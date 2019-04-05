@@ -24,3 +24,10 @@ int32_t main(){
 dfs(1);
 return 0;
 }
+
+
+/*----------------------------------------------------------------------------------------------------------------------
+Problem : https://www.codechef.com/problems/FIRESC
+Solution : https://www.codechef.com/viewsolution/23666254
+
+*/
