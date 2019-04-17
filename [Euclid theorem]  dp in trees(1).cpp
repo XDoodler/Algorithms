@@ -72,3 +72,8 @@ int32_t main()
 	}
 	return 0;
 }
+
+/*
+prob : https://www.codechef.com/APRIL19B/problems/SJ1/
+sol : https://www.codechef.com/viewsolution/23926127
+*/
