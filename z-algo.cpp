@@ -14,3 +14,11 @@ vector<int> z_function(string &s)
 	return z;
 }
 
+/*
+text  = a b c b c a c d e x y
+pattern = abc
+
+new string = a b c ($) a b c b c a c d e x y
+
+now perform z algorithm to fetch the number of times the pattern exixts in the array! 
+*/
