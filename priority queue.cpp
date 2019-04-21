@@ -24,4 +24,7 @@ priority_queue<int> Q;
   
   Problems : https://www.codechef.com/problems/TSECJ05
   Solution : https://www.codechef.com/viewsolution/23672310
+  
+  Problem : https://www.codechef.com/problems/PEWDSVTS
+  Solution : https://www.codechef.com/viewsolution/24063781
   */
