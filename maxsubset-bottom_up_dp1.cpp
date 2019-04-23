@@ -26,4 +26,5 @@ Subset      Sum
 [1, 5]       6
 [3, 5]       8
 
+output : 8
 */
