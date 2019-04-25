@@ -1,7 +1,6 @@
   
-/* author : Soham Chakrabarti
+/* 
    codechef : nuttela
-   codeforces : xdoodler
    
    Dijkstra Algorithm 
 */
