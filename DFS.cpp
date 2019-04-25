@@ -1,6 +1,5 @@
-/* author : Soham Chakrabarti
+/*
    codechef : nuttela
-   codeforces : xdoodler
    
    Depth- first search
 */
