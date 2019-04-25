@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
-/* author : Soham Chakrabarti
+/*
    codechef : nuttela
-   codeforces : xdoodler
    
    Floyd Warshal
 */
