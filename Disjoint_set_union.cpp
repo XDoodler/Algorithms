@@ -1,6 +1,5 @@
-/* author : Soham Chakrabarti
+/* 
    codechef : nuttela
-   codeforces : xdoodler
    
    Disjoint Set Unions (Union Find and Path Compression
 */
