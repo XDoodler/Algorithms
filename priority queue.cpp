@@ -27,4 +27,6 @@ priority_queue<int> Q;
   
   Problem : https://www.codechef.com/problems/PEWDSVTS
   Solution : https://www.codechef.com/viewsolution/24063781
+  
+  Applications of PQ are imp!
   */
