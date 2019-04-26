@@ -1,3 +1,7 @@
+#include<bits/stdc++.h>
+
+using namepsace std;
+
 int mcm(int p[], int n){
     int m[n][n];
     int i, j, k, L, q;
@@ -16,3 +20,5 @@ int mcm(int p[], int n){
     }
     return m[1][n-1];
 }
+
+
