@@ -45,7 +45,8 @@ void update(int v, int tl, int tr, int pos, int new_val) {
  int32_t main(){
  while(condition){
  int s = sum(a, b, 1, 0, n-1);
+     cout << s << '\n';
  update(1, 0, n-1, position_to_update, new_value);
  }
- cout << s << '\n';
+ 
  }
