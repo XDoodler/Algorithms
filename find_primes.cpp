@@ -19,3 +19,23 @@ while(lo<n){if(hi>n)hi=n;
 
                              
                              //Access the primes vector for fetching primes btwn 1 - 100000000
+//------------------------------------------------------------------------------------------------------------------
+
+	int n=1e8;
+	vector<bool> is_prime(n+1, true);
+	is_prime[0] = is_prime[1] = false;
+	for (int i = 2; i <= n; i++) {
+    if (is_prime[i] && (long long)i * i <= n) {
+        for (int j = i * i; j <= n; j += i)
+            is_prime[j] = false;
+    }
+}
+for (int i = 1; i <= n; ++i)
+{
+	if(is_prime[i])cout<<i<<' ';
+}
+	return 0;
+}	
+                             
+                             //print primes in Range !!!!!!!
+                             
