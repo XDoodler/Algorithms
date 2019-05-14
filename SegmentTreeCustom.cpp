@@ -3,8 +3,8 @@
 	SegmentTree 
 	1. Sum in range
 	2. Minimum number in range
-
-	No updates!
+	
+	Update Segment tree.
 */
 #include <bits/stdc++.h>
 using namespace std; 
