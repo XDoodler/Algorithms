@@ -63,11 +63,11 @@ void update_sum(int index, int start, int end, int position, int new_val, int* t
 		int mid = (start + end)/2;
 		if(position <= mid)
 		{
-			update_sum(index, start, mid, position, new_val, tree_sum);
+			update_sum(2*index, start, mid, position, new_val, tree_sum);
 		}
 		else
 		{
-			update_sum(index, mid+1, end, position, new_val, tree_sum);
+			update_sum(2*index+1, mid+1, end, position, new_val, tree_sum);
 		}
 		tree_sum[index] = tree_sum[2*index]+tree_sum[2*index+1];
 	}
@@ -82,7 +82,6 @@ int32_t main(){
 	{
 		cin >> arr[i];
 	}
-	cout << endl;
 	int tree_sum[2*n];
 	int tree_min[2*n];
 	build_sum_tree(arr, tree_sum, 0, n-1, 1);
@@ -95,6 +94,7 @@ int32_t main(){
 	cout << "Enter position and Value to be updated :" << endl;
 	cin >> pos >> new_value;
 	update_sum(1, 0, n-1, pos, new_value, tree_sum);
+	cout << "Updated Tree###" << endl;
 	for (int i = 1; i < 2*n; ++i)
 	{
 		cout << tree_sum[i] << ' ';
