@@ -103,8 +103,8 @@ int32_t main(){
 	{
 		cin >> arr[i];
 	}
-	int tree_sum[2*n];
-	int tree_min[2*n];
+	int tree_sum[4*n];
+	int tree_min[4*n];
 	build_sum_tree(arr, tree_sum, 0, n-1, 1);
 	build_min_tree(arr, tree_min, 0, n-1, 1);
 	int l,r, pos, new_value,l1,r1;
