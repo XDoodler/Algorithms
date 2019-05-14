@@ -120,7 +120,7 @@ int32_t main(){
 	for (int i = 1; i < 2*n; ++i)
 	{
 		cout << tree_sum[i] << ' ';
-	}
+	}cout << endl;
 	cout << "Updated Min Tree###" << endl;
 	for (int i = 1; i < 2*n; ++i)
 	{
