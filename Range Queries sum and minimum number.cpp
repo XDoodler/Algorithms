@@ -11,12 +11,12 @@ using namespace std;
 
 void build_min_tree(int arr[], int* tree_min, int start, int end, int ind)
 {
-	int mid = (start+end)/2;
+	
 	if(start == end){
 		tree_min[ind]=arr[start];
 		return;
 	}
-
+	int mid = (start+end)/2;
 	build_min_tree(arr, tree_min, start, mid, 2*ind);
 	build_min_tree(arr,tree_min, mid+1, end, 2*ind+1);
 	tree_min[ind] = min(tree_min[2*ind],tree_min[2*ind+1]);
@@ -25,12 +25,12 @@ void build_min_tree(int arr[], int* tree_min, int start, int end, int ind)
 
 void build_sum_tree(int arr[], int* tree_sum, int start, int end, int ind)
 {
-	int mid = (start+end)/2;
+	
 	if(start == end){
 		tree_sum[ind]=arr[start];
 		return;
 	}
-
+	int mid = (start+end)/2;
 	build_sum_tree(arr, tree_sum, start, mid, 2*ind);
 	build_sum_tree(arr,tree_sum, mid+1, end, 2*ind+1);
 	tree_sum[ind] = tree_sum[2*ind]+ tree_sum[2*ind+1];
