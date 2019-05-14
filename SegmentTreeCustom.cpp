@@ -9,47 +9,69 @@
 #include <bits/stdc++.h>
 using namespace std; 
 
-void build_min_tree(int arr[], int* tree, int start, int end, int ind)
+void build_min_tree(int arr[], int* tree_min, int start, int end, int ind)
 {
 	int mid = (start+end)/2;
 	if(start == end){
-		tree[ind]=arr[start];
+		tree_min[ind]=arr[start];
 		return;
 	}
 
-	build(arr, tree, start, mid, 2*ind);
-	build(arr,tree, mid+1, end, 2*ind+1);
-	tree[ind] = min(tree[2*ind],tree[2*ind+1]);
+	build_min_tree(arr, tree_min, start, mid, 2*ind);
+	build_min_tree(arr,tree_min, mid+1, end, 2*ind+1);
+	tree_min[ind] = min(tree_min[2*ind],tree_min[2*ind+1]);
 
 }
 
-void build_sum_tree(int arr[], int* tree, int start, int end, int ind)
+void build_sum_tree(int arr[], int* tree_sum, int start, int end, int ind)
 {
 	int mid = (start+end)/2;
 	if(start == end){
-		tree[ind]=arr[start];
+		tree_sum[ind]=arr[start];
 		return;
 	}
 
-	build(arr, tree, start, mid, 2*ind);
-	build(arr,tree, mid+1, end, 2*ind+1);
-	tree[ind] = tree[2*ind]+ tree[2*ind+1];
+	build_sum_tree(arr, tree_sum, start, mid, 2*ind);
+	build_sum_tree(arr,tree_sum, mid+1, end, 2*ind+1);
+	tree_sum[ind] = tree_sum[2*ind]+ tree_sum[2*ind+1];
 
 }
-int min_in_range (int l, int r, int index, int start, int end ,int* tree)
+int min_in_range(int l, int r, int index, int start, int end ,int* tree_min)
 {
 	if(end<l || start>r) return INT_MAX; //no overlap 
-	if(l<=start && r>=end) return tree[index]; //total overlap
+	if(l<=start && r>=end) return tree_min[index]; //total overlap
 	int mid = (start+end)/2;
-	return min(min_in_range(l, r, 2*index, start, mid, tree),min_in_range(l, r, 2*index+1, mid+1, end, tree));
+	return min(min_in_range(l, r, 2*index, start, mid, tree_min), min_in_range(l, r, 2*index+1, mid+1, end, tree_min));
 }
 
-int sum(int l, int r, int index, int start, int end ,int* tree)
+int sum(int l, int r, int index, int start, int end ,int* tree_sum)
 {
 	if(end<l || start>r) return 0; //no overlap 
-	if(l<=start && r>=end) return tree[index]; //total overlap
+	if(l<=start && r>=end) return tree_sum[index]; //total overlap
 	int mid = (start+end)/2;
-	return sum(l, r, 2*index, start, mid, tree)+ sum(l, r, 2*index+1, mid+1, end, tree);
+	return sum(l, r, 2*index, start, mid, tree_sum)+ sum(l, r, 2*index+1, mid+1, end, tree_sum);
+}
+
+void update_sum(int index, int start, int end, int position, int new_val, int* tree_sum)
+{
+	if(start == end)
+	{
+		tree_sum[index] = new_val;
+	}
+	else
+	{
+		int mid = (start + end)/2;
+		if(position <= mid)
+		{
+			update_sum(index, start, mid, position, new_val, tree_sum);
+		}
+		else
+		{
+			update_sum(index, mid+1, end, position, new_val, tree_sum);
+		}
+		tree_sum[index] = tree_sum[2*index]+tree_sum[2*index+1];
+	}
+	
 }
 int32_t main(){
 
@@ -61,20 +83,26 @@ int32_t main(){
 		cin >> arr[i];
 	}
 	cout << endl;
-	int tree[2*n];
-	build_sum_tree(arr, tree, 0, n-1, 1);
-	build_min_tree(arr, tree, 0, n-1, 1);
-
-
-	for (int i = 1; i < 2*n; ++i)
-	{
-		cout << tree[i] << ' ';
-	}
-	cout << endl;
-	int l,r;
+	int tree_sum[2*n];
+	int tree_min[2*n];
+	build_sum_tree(arr, tree_sum, 0, n-1, 1);
+	build_min_tree(arr, tree_min, 0, n-1, 1);
+	int l,r, pos, new_value,l1,r1;
 	cout << "Enter lower range and higher range to computer query (0-based indexing) :" << endl;
 	cin >> l >> r;
-	cout << "Minimum Number in range : " << min_in_range(l,r,1,0,n-1,tree) << endl;
-	cout <<"Sum in range : " << sum(l,r,1,0,n-1,tree) << endl;
+	cout << "Minimum Number in range : " << min_in_range(l,r,1,0,n-1,tree_min) << endl;
+	cout <<"Sum in range : " << sum(l,r,1,0,n-1,tree_sum) << endl;
+	cout << "Enter position and Value to be updated :" << endl;
+	cin >> pos >> new_value;
+	update_sum(1, 0, n-1, pos, new_value, tree_sum);
+	for (int i = 1; i < 2*n; ++i)
+	{
+		cout << tree_sum[i] << ' ';
+	}
+	cout << endl;
+	cout << "Enter lower range and higher range to computer query (0-based indexing) :" << endl;
+	cin >> l >> r;
+	cout << "Minimum Number in range : " << min_in_range(l,r,1,0,n-1,tree_min) << endl;
+	cout <<"Sum in range : " << sum(l,r,1,0,n-1,tree_sum) << endl;
     return 0;
 }
