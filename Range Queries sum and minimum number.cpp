@@ -4,7 +4,7 @@
 	1. Sum in range
 	2. Minimum number in range
 	
-	Update Segment tree.
+	Update Segment tree as well.
 */
 #include <bits/stdc++.h>
 using namespace std; 
@@ -73,6 +73,27 @@ void update_sum(int index, int start, int end, int position, int new_val, int* t
 	}
 	
 }
+void update_min(int index, int start, int end, int position, int new_val, int* tree_min)
+{
+	if(start == end)
+	{
+		tree_min[index] = new_val;
+	}
+	else
+	{
+		int mid = (start + end)/2;
+		if(position <= mid)
+		{
+			update_min(2*index, start, mid, position, new_val, tree_min);
+		}
+		else
+		{
+			update_min(2*index+1, mid+1, end, position, new_val, tree_min);
+		}
+		tree_min[index] = min(tree_min[2*index],tree_min[2*index+1]);
+	}
+	
+}
 int32_t main(){
 
 	int n;
@@ -94,10 +115,16 @@ int32_t main(){
 	cout << "Enter position and Value to be updated :" << endl;
 	cin >> pos >> new_value;
 	update_sum(1, 0, n-1, pos, new_value, tree_sum);
-	cout << "Updated Tree###" << endl;
+	update_min(1, 0, n-1, pos, new_value, tree_min);
+	cout << "Updated Sum Tree###" << endl;
 	for (int i = 1; i < 2*n; ++i)
 	{
 		cout << tree_sum[i] << ' ';
+	}
+	cout << "Updated Min Tree###" << endl;
+	for (int i = 1; i < 2*n; ++i)
+	{
+		cout << tree_min[i] << ' ';
 	}
 	cout << endl;
 	cout << "Enter lower range and higher range to computer query (0-based indexing) :" << endl;
