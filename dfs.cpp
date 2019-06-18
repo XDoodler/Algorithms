@@ -3,27 +3,38 @@
    
    Depth- first search
 */
-#define int long long
-using namespace std;
+#include <bits/stdc++.h> 
+#define int unsigned long long
+#define del for(int i = 0; i < M; i++)G[i].clear();
+using namespace std; 
+ 
+const int M = 1e6+6;
 
-const int N = 1e6+6;
-vector<int> adj[N];
-bool vis[N];
-
-void dfs(int s) {
-if (vis[s]) return;
-vis[s] = true;
-for (auto u: adj[s]) {
-dfs(u);
-}
-}
-
-int32_t main(){
-//input adjacency list and dfs( _starting node_)
-dfs(1);
-return 0;
-}
-
+vector<int> G[M]; 
+vector<bool> vis(M);
+void dfs(int u, int parent) 
+{  
+	if(vis[u])return;
+	vis[u]=true;
+	cout << u << endl;
+	for(int child:G[u])
+	{
+		if(!vis[child])dfs(child, u);
+	}
+} 
+int32_t main() 
+{  
+	int n,v,e;
+	cin >> n;
+	for (int i = 0; i < n - 1; ++i){
+		cin >> v >> e;
+		G[v].push_back(e);
+		G[e].push_back(v);
+	} 
+	dfs(1,0);
+	del;
+	return 0; 
+} 
 
 /*----------------------------------------------------------------------------------------------------------------------
 Problem : https://www.codechef.com/problems/FIRESC
