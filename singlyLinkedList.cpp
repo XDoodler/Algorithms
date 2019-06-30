@@ -2,25 +2,47 @@
 #define ll long long
 using namespace std;
 
-struct ListNode{
-		int data;
-		ListNode* next;
-	};
+class Node  
+{  
+    public: 
+    int data;  
+    Node *next;  
+};
+
+void append(Node** head_ref, int new_data)  
+{  
+    Node* newNode = new Node(); 
+    Node *temp = *head_ref;
+    newNode->data = new_data;  
+    newNode->next = NULL;  
+    if (*head_ref == NULL)  
+    {  
+        *head_ref = newNode;  
+        return;  
+    }  
+    while (temp->next != NULL)  
+        temp = temp->next; 
+    temp->next = newNode;  
+    return;  
+}  
+
+void printLinkedList(Node *start)
+{
+	while(start != NULL)
+	{
+		cout << start->data << ' ';
+		start = start->next;
+	}
+}
 int main()
 {
-	ListNode* front = new ListNode();
-	front->data = 1;
-	front->next = new ListNode();
-	front->next->data = 2;
-	front->next->next = new ListNode();
-	front->next->next->data = 3;
-	front->next->next->next = nullptr;
 
-	ListNode* temp = front;
-	while(temp != nullptr)
-	{
-		cout << temp->data << " ";
-		temp = temp->next;
-	}
+	Node* front = NULL;
+	append(&front,100);
+	append(&front,200);
+	append(&front,300);
+	append(&front,400);
+	printLinkedList(front);
+
 	return 0;
 }
