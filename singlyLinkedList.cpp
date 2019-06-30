@@ -46,8 +46,8 @@ int main()
 {
 
 	Node* front = NULL;
-	push(&front,500);
-	append(&front,100);
+	push(&front,500); //push from front.
+	append(&front,100); //add from back
 	append(&front,200);
 	append(&front,300);
 	append(&front,400);
