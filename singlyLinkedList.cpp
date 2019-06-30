@@ -9,22 +9,30 @@ class Node
     Node *next;  
 };
 
-void append(Node** head_ref, int new_data)  
+void append(Node** start, int value)  
 {  
     Node* newNode = new Node(); 
-    Node *temp = *head_ref;
-    newNode->data = new_data;  
+    Node *temp = *start;
+    newNode->data = value;  
     newNode->next = NULL;  
-    if (*head_ref == NULL)  
+    if (*start == NULL)  
     {  
-        *head_ref = newNode;  
+        *start = newNode;  
         return;  
     }  
     while (temp->next != NULL)  
         temp = temp->next; 
     temp->next = newNode;  
     return;  
-}  
+} 
+
+void push(Node** start, int value)
+{
+	Node* temp = new Node();
+	temp->data = value;
+	temp->next = *start;
+	*start = temp;
+} 
 
 void printLinkedList(Node *start)
 {
@@ -38,6 +46,7 @@ int main()
 {
 
 	Node* front = NULL;
+	push(&front,500);
 	append(&front,100);
 	append(&front,200);
 	append(&front,300);
