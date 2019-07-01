@@ -8,6 +8,15 @@ class DoublyLinkedlist
 		DoublyLinkedlist* prev;
 		DoublyLinkedlist* next;
 };
+void push(DoublyLinkedlist** start, int value)
+{
+	DoublyLinkedlist* newNode = new DoublyLinkedlist();
+	newNode->data = value;
+	newNode->prev = NULL;
+	newNode->next = *start;
+	if ((*start) != NULL)(*start)->prev = newNode;
+	(*start) = newNode;
+}
 void append(DoublyLinkedlist** start, int value)  
 {  
     DoublyLinkedlist* newNode = new DoublyLinkedlist(); 
@@ -43,6 +52,8 @@ void printList(DoublyLinkedlist *start)
 int main()
 {
 	DoublyLinkedlist* front = NULL;
+	push(&front,500);
+	push(&front,600);
 	append(&front,100);
 	append(&front,200);
 	append(&front,300);
