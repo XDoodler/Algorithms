@@ -1,63 +1,79 @@
-struct LCA {
-    vector<int> height, euler, first, segtree;
-    vector<bool> visited;
-    int n;
+//Lowest common ancestor.
 
-    LCA(vector<vector<int>> &adj, int root = 0) {
-        n = adj.size();
-        height.resize(n);
-        first.resize(n);
-        euler.reserve(n * 2);
-        visited.assign(n, false);
-        dfs(adj, root);
-        int m = euler.size();
-        segtree.resize(m * 4);
-        build(1, 0, m - 1);
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define pb push_back
+
+const int MAX = (int)1e4+1;
+
+int n, m, u, v, sz;
+vector<int> G[MAX], euler, first(MAX), height(MAX), tree(8*MAX);
+
+void dfs(int u, int h = 0) {
+    height[u] = h;
+    first[u] = euler.size();
+    euler.pb(u);
+    for(int v : G[u]) {
+        dfs(v, h+1);
+        euler.pb(u);
     }
+}
 
-    void dfs(vector<vector<int>> &adj, int node, int h = 0) {
-        visited[node] = true;
-        height[node] = h;
-        first[node] = euler.size();
-        euler.push_back(node);
-        for (auto to : adj[node]) {
-            if (!visited[to]) {
-                dfs(adj, to, h + 1);
-                euler.push_back(node);
-            }
+void build(int node, int l, int r) {
+    if(l == r) {
+        tree[node] = euler[l];
+        return;
+    }
+    int m = (l+r)>>1;
+    build(node<<1, l, m);
+    build(node<<1|1, m+1, r);
+    int a = tree[node<<1], b = tree[node<<1|1];
+    tree[node] = height[a] < height[b] ? a : b;
+}
+
+int query(int node, int l, int r, int p, int q) {
+    if(r < p || l > q)
+        return -1;
+    if(l >= p && r <= q)
+        return tree[node];
+    int m = (l+r)>>1;
+    int a = query(node<<1, l, m, p, q), b = query(node<<1|1, m+1, r, p, q);
+    if(a == -1)
+        return b;
+    if(b == -1)
+        return a;
+    return height[a] < height[b] ? a : b;
+}
+
+int lca(int u, int v) {
+    u = first[u], v = first[v];
+    if(u > v) swap(u, v);
+    return query(1, 0, sz, u, v);
+}
+
+int main() {
+    cin >> n;
+    for(int i = 0; i < n; ++i) {
+        cin >> m;
+        for(int j = 0; j < m; ++j) {
+            cin >> u;
+            G[i].pb(u);
         }
     }
-
-    void build(int node, int b, int e) {
-        if (b == e) {
-            segtree[node] = euler[b];
-        } else {
-            int mid = (b + e) / 2;
-            build(node << 1, b, mid);
-            build(node << 1 | 1, mid + 1, e);
-            int l = segtree[node << 1], r = segtree[node << 1 | 1];
-            segtree[node] = (height[l] < height[r]) ? l : r;
-        }
+    dfs(0);
+    sz = (int)euler.size() - 1;
+    build(1, 0, sz);
+    int q;
+    cin >> q;
+    while(q--) {
+        cin >> u >> v;
+        cout << lca(u, v) << '\n';
     }
+    return 0;
+}
 
-    int query(int node, int b, int e, int L, int R) {
-        if (b > R || e < L)
-            return -1;
-        if (b >= L && e <= R)
-            return segtree[node];
-        int mid = (b + e) >> 1;
 
-        int left = query(node << 1, b, mid, L, R);
-        int right = query(node << 1 | 1, mid + 1, e, L, R);
-        if (left == -1) return right;
-        if (right == -1) return left;
-        return height[left] < height[right] ? left : right;
-    }
 
-    int lca(int u, int v) {
-        int left = first[u], right = first[v];
-        if (left > right)
-            swap(left, right);
-        return query(1, 0, euler.size() - 1, left, right);
-    }
-};
+// Problem Link : https://www.spoj.com/problems/LCASQ/
