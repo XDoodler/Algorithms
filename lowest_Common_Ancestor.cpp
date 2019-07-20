@@ -59,10 +59,10 @@ int main() {
         cin >> m;
         for(int j = 0; j < m; ++j) {
             cin >> u;
-            G[i].pb(u);
+            G[i].pb(u); // G[i+1] for 1-based indexing
         }
     }
-    dfs(0);
+    dfs(0); // dfs(1) for 1-based indexing
     sz = (int)euler.size() - 1;
     build(1, 0, sz);
     int q;
