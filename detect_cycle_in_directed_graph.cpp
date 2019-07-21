@@ -1,3 +1,6 @@
+/*
+	Using colors - Gray , Black , White
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);
@@ -27,7 +30,7 @@ bool findCycle(int u)
 int32_t main() {
     IOS;
     n=4;
-   	G[1].push_back(2);
+    G[1].push_back(2);
     G[1].push_back(3);
     G[3].push_back(2);
     G[3].push_back(4);
