@@ -64,3 +64,125 @@ Output:
     [0, 1]
     
     '''
+
+
+
+#-------------------------------------------------------------------------------------------------------------
+
+from itertools import permutations
+
+INF = 99999
+
+#From https://stackoverflow.com/questions/1482308/how-to-get-all-subsets-of-a-set-powerset
+def allSets(list):
+    x = len(list)
+    m = [1 << i for i in range(x)]
+    for i in range(1 << x):
+        yield [all_ for (mask, all_) in zip(m, list) if i & mask]
+
+def initGraph(graph, source):
+    dis = {}
+    pre = {}
+    for node in graph:
+        dis[node] = 1e3
+        pre[node] = None
+    dis[source] = 0 
+    return (dis, pre)
+
+
+# Bellman-Form Algo
+
+def relaxEdge(
+    node,
+    neighbour,
+    graph,
+    dis,
+    pre,
+    ):
+    nidx = neighbourIndex(neighbour, len(graph))
+    if dis[node] + graph[node][nidx] < dis[neighbour]:
+        dis[neighbour] = dis[node] + graph[node][nidx]
+        pre[neighbour] = node
+
+
+def bellman_ford(
+    matrix,
+    graph,
+    time_limit,
+    source,
+    ):
+    (dist, pred) = initGraph(graph, source)
+    for num in range(len(graph) - 1):
+        for node in graph:
+            temp = dict(graph)
+            del temp[node]
+            for neighbour in temp:
+                relaxEdge(node, neighbour, graph, dist, pred)
+
+    # Step 3: Check for negative-weight cycles
+
+    for node in graph:
+        for neighbour in graph:
+            nidx = neighbourIndex(neighbour, len(graph))
+            if dist[node] + graph[node][nidx] < dist[neighbour]:
+                return [num for num in range(0, len(graph) - 2)]
+    fld = floydWarshall(matrix)
+    return find_most_bunnies(matrix, fld, time_limit)
+
+
+def floydWarshall(graph):
+    V = len(graph)
+    dist = map(lambda i : map(lambda j : j , i) , graph)
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+    return dist
+
+def find_most_bunnies(matrix, spaths, time_limit):
+    n = len(matrix) - 2
+    bunnyids = []
+    for num in range(n):
+        bunnyids.append(num)
+    pset = allSets(bunnyids)
+    pset = sorted(pset)
+    optimal_bunnies = []
+    for sub in pset:
+        for permutation in permutations(sub):
+            subsum = 0
+            prev = 0
+            next = len(matrix) - 1
+            for bunnyid in permutation:
+                next = bunnyid + 1
+                subsum += spaths[prev][next]
+                prev = next
+            subsum += spaths[prev][len(matrix) - 1]
+            if subsum <= time_limit and len(sub) > len(optimal_bunnies):
+                optimal_bunnies = sub
+                if len(optimal_bunnies) == n:
+                    break
+            else:
+                pass
+    return optimal_bunnies
+
+def neighbourIndex(neighbour, graphsize):
+    if neighbour == 'Start':
+        return 0
+    elif neighbour == 'Bulkhead':
+        return graphsize - 1
+    else:
+        return neighbour + 1
+
+
+def solution(times, time_limit):
+    if len(times) <= 2:
+        return []
+    keys = ['Start']
+    for num in range(1, len(times) - 1):
+        keys.append(num - 1)
+    keys.append('Bulkhead')
+    graph = dict(zip(keys, times))
+
+    return bellman_ford(times, graph, time_limit, 'Start')
+
+
