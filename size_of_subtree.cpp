@@ -1,17 +1,21 @@
+#pragma GCC optimize("O3")
+//~ #pragma GCC optimize("Ofast")
+//~ #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+//~ #pragma GCC optimize("unroll-loops")
 #include <bits/stdc++.h>
-using namespace std;
 #define ll long long
 #define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define TC int t; cin >> t; while(t--)
 #define rep(i,j,k) for(int i=j; i<k; i++)
 #define endl '\n'
 #define pb push_back
-
+#define imie(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 const int MAX = 1e6+6;
 const int MOD = (int) 1e9+7;
 
 ll modmul(ll a,ll b){ll res=0;a%=MOD;while(b){if(b&1)res=(res+a)%MOD;a=(a<<1)%MOD;b>>=1;}return res;}
 ll modexp(ll a,ll b){ll res=1;a%=MOD;while(b){if(b&1)res=(res*a)%MOD;a=(a*a)%MOD;b>>=1;}return res;}
+using namespace std;
 
 vector<int> G[MAX],child;
 int sum=0;
@@ -42,7 +46,7 @@ int32_t main() {
 }
 
 //INPUT
-//	  		1
+//	  	    1
 //	 	   / \
 //		  2   3
 //		 / \ 
