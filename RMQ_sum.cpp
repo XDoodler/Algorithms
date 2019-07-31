@@ -4,7 +4,7 @@
 	1. Sum in range
 	2. RMQ
 	
-	Update Segment tree as well.
+	Update and Query O(log n).
 */
 #include <bits/stdc++.h>
 using namespace std; 
