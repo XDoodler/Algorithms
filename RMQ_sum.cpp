@@ -2,7 +2,7 @@
 	Author : Soham Chakrbarti
 	SegmentTree 
 	1. Sum in range
-	2. Minimum number in range
+	2. RMQ
 	
 	Update Segment tree as well.
 */
