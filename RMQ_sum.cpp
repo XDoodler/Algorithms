@@ -1,5 +1,4 @@
 /*
-	Author : Soham Chakrbarti
 	SegmentTree 
 	1. Sum in range
 	2. RMQ
