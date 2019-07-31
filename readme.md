@@ -1,4 +1,4 @@
 # ADVANCED ALGORITHMS AND DATA STRUCTURES
-## CPP ONLY PLEASE
+## Highly restricted area for Pyth and Java Coders :P
 
 
