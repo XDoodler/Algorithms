@@ -24,7 +24,14 @@ struct point
  
     point () {}
  
-    point(int x, int y) : x(x), y(y) {}
+    point(int x, int y) : x(x), y(y) {} //InitializerList usage
+    /* ....Same as below cons
+    
+    point(int a, int b) {
+        x=a;
+        y=b;
+    }
+    */
 };
  
 bool comp(point &p1, point &p2)
