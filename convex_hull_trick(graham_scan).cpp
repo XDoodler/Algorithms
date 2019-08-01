@@ -1,4 +1,4 @@
-//Conhex Hull Trick.
+//Convex Hull Trick.
 
 
 #pragma GCC optimize("O3")
