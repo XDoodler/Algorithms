@@ -1,3 +1,6 @@
+
+// algorithm to fetch the path with maximum sum path from node to leaf
+
 #include <bits/stdc++.h> 
 #define LL unsigned long long
 #define F first
@@ -10,7 +13,6 @@ vector<LL> arr;
 int dp[10000];
 
 
-// algorithm to fetch the path with maximum sum
 
 
 void dfs(int u, int parent) 
