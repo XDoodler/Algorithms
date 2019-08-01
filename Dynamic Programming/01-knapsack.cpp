@@ -1,5 +1,4 @@
-//0/1 Knapsack
-
+//0/1 knapsack.
 
 
 #pragma GCC optimize("O3")
@@ -24,9 +23,11 @@ int knapSack(int W,int wt[],int val[],int n){
 	rep(i,0,n+1){
 		rep(j,0,W+1){
 			if(i==0||j==0) dp[i][j]=0;
-			else dp[i][j]=max(val[i-1] + dp[i-1][j-wt[i-1]],  dp[i-1][j]); 
+			else if(wt[i-1] <= W)dp[i][j]=max(val[i-1] + dp[i-1][j-wt[i-1]],  dp[i-1][j]);
+			else  dp[i][j] = dp[i-1][j];
 		}
-	}return dp[n][W];
+	}
+	return dp[n][W];
 }
 int main() {
 	IOS;
