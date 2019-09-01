@@ -15,3 +15,9 @@ if($text3 =~ /^0|[a]/){
    $fl3=1;
 }
 print "$fl1\n$fl2\n$fl3\n";
+
+
+#OUTPUT:
+#1
+#1
+#0
