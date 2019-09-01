@@ -9,3 +9,7 @@ foreach $v (split //, $text)
      }
 }
 print $cnt;
+
+
+#OUTPUT:
+#3
