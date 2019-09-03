@@ -27,7 +27,7 @@ typedef struct data{
     int sum, pref, suff, ans;
 }data;
 
-data combine(data l, data r)
+inline data combine(data l, data r)
 {
     data d;
     d.sum = l.sum + r.sum;
@@ -37,9 +37,9 @@ data combine(data l, data r)
     return d;
 }
 
-data mkdata(int v){
-    data d;
-    d.sum = d.pref = d.suff = d.ans = v;
+inline data mkdata(int v){
+    data d;int k=0;
+    d.sum = d.pref = d.suff = d.ans = max(k,v);
     return d;
 }
 
@@ -56,8 +56,8 @@ void build(int node, int s, int e){
 }
 
 data query(int node,int s,int e,int l,int r){
-    if(e<l||s>r)return mkdata(0);
-    if(l>=s&&r>=e)return T[node];
+    if(e<l||s>r)return mkdata(0);//no overlap
+    if(l<=s&&r>=e)return T[node];//total overlap
     int mid=(s+e)>>1;
     return combine(query(node<<1,s,mid,l,r),query(node<<1|1,mid+1,e,l,r));
 }
