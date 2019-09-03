@@ -56,10 +56,10 @@ void build(int node, int s, int e){
 }
 
 data query(int node,int s,int e,int l,int r){
-    if(e<l||s>r)return mkdata(0);//no overlap
+    if(e<l||s>r || l>r)return mkdata(0);//no overlap
     if(l<=s&&r>=e)return T[node];//total overlap
     int mid=(s+e)>>1;
-    return combine(query(node<<1,s,mid,l,r),query(node<<1|1,mid+1,e,l,r));
+    return combine(query(node<<1,s,mid,l,min(r,mid)),query(node<<1|1,mid+1,e,max(mid+1, l),r));
 }
 
 int32_t main() {
