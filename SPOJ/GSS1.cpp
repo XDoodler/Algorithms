@@ -55,11 +55,16 @@ void build(int node, int s, int e){
     T[node]=combine(T[node<<1],T[node<<1|1]);
 }
 
-data query(int node,int s,int e,int l,int r){
-    if(e<l||s>r || l>r)return mkdata(0);//no overlap
-    if(l<=s&&r>=e)return T[node];//total overlap
-    int mid=(s+e)>>1;
-    return combine(query(node<<1,s,mid,l,min(r,mid)),query(node<<1|1,mid+1,e,max(mid+1, l),r));
+data query(int node, int l, int r, int p, int q) {
+    if(l >= p && r <= q)
+        return tree[node];
+    int m = (l+r)>>1;
+    if(q <= m)
+        return query(node<<1, l, m, p, q);
+    else if(p > m)
+        return query(node<<1|1, m+1, r, p, q);
+    data d1 = query(node<<1, l, m, p, q), d2 = query(node<<1|1, m+1, r, p, q);
+    return combine(d1, d2);
 }
 
 int32_t main() {
