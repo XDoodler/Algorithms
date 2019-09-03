@@ -1,3 +1,4 @@
+// https://e-maxx.ru/algo/segment_tree
 #pragma Gpref optimize("O3")
 //#pragma Gpref optimize("Ofast")
 //#pragma Gpref target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
@@ -27,8 +28,7 @@ typedef struct data{
     int sum, pref, suff, ans;
 }data;
 
-inline data combine(data l, data r)
-{
+inline data combine(data l, data r){
     data d;
     d.sum = l.sum + r.sum;
     d.pref = max(l.pref, l.sum + r.pref);
@@ -38,8 +38,8 @@ inline data combine(data l, data r)
 }
 
 inline data mkdata(int v){
-    data d;int k=0;
-    d.sum = d.pref = d.suff = d.ans = max(k,v);
+    data d;
+    d.sum = d.pref = d.suff = d.ans = v;
     return d;
 }
 
@@ -57,7 +57,7 @@ void build(int node, int s, int e){
 
 data query(int node, int l, int r, int p, int q) {
     if(l >= p && r <= q)
-        return tree[node];
+        return T[node];
     int m = (l+r)>>1;
     if(q <= m)
         return query(node<<1, l, m, p, q);
