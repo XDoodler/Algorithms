@@ -63,30 +63,29 @@ int lca(int u, int v)
 int lcamin(int a, int b){
     //a<b condition
     if(level[a]<level[b])swap(a,b);
-    int j=0;
     int mn=INT_MAX;
-    int down = up[a][0];
+    int down = a;
+    //cout << a << b << '-';
     while(down!=b){
         int x=down;
-        int y=up[a][j+1];
-        cout << x << y << endl;
+        int y=up[down][0];
+        //cout << x << ',' << y << endl;
         if(x>y)swap(x,y);
         mn = min(mn,weights[{x,y}]);
-        down = up[a][j++];
+        down = up[down][0];
     }
     return mn;
 }
 int lcamax(int a, int b){
     if(level[a]<level[b])swap(a,b);
-    int j=0;
     int mn=INT_MIN;
-    int down = up[a][0];
+    int down = a;
     while(down!=b){
         int x=down;
-        int y=up[a][j+1];
+        int y=up[down][0];
         if(x>y)swap(x,y);
         mn = max(mn,weights[{x,y}]);
-        down = up[a][j++];
+        down = up[down][0];
     }
     return mn;
 }
@@ -110,10 +109,12 @@ while(q--){
     int l,r;
     cin >> l >> r;
     int rt = lca(l,r);
+    //cout << rt << ' ';
     int lcamin1 = lcamin(l,rt);
     int lcamax1 = lcamax(l,rt);
     int lcamin2 = lcamin(r,rt);
     int lcamax2 = lcamax(r,rt);
+    //cout << lcamin1 <<' '<< lcamin2 <<' '<< lcamax1 <<' '<< lcamax2 << endl;
     cout << min(lcamin1,lcamin2) << ' ' << max(lcamax1,lcamax2) << '\n';
 }
 return 0;
