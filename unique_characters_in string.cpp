@@ -1,6 +1,6 @@
 
-#Problem Link and Solution : https://codeforces.com/contest/1234/submission/61672539
-#Codeforces D
+//Problem Link and Solution : https://codeforces.com/contest/1234/submission/61672539
+//Codeforces D
 
 #include<bits/stdc++.h>
  
