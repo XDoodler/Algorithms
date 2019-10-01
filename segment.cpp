@@ -38,6 +38,7 @@ void upd(int node,int s,int e,int p,char new_val){
     if(s == e){
     T[node][arr[p] - 'a'] --;
     T[node][new_val - 'a'] ++;
+    arr[p]=new_val;
     }
     else
     {
