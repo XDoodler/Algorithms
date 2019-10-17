@@ -1,23 +1,7 @@
 //CODE ARENA PLAYER
 // Maximum Spanning Tree : https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/maximum-spanning-tree/
 
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <string>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <set>
-#include <map>
-#include <cstdio>
-#include <vector>
-#include <cstdlib>
-#include <iomanip>
-#include <cmath>
-#include <ctime>
-#include <utility>
+#include <bits/stdc++.h>
  
 #define L first
 #define R second
