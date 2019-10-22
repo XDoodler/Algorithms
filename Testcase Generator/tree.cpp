@@ -30,8 +30,8 @@ int main() {
     //PRINT NODES OF TREE
     cout << N << endl;
 
-    //EDGES
-    int x = 10, y = 10;
+    //MIN AND MAX VALUE OF NODE OF TREE
+    int x = 1, y = 10;
 
     //VALUES OF NODES (IF TO BE PROVIDED)
     for (int i = 0; i < N; ++i) {
