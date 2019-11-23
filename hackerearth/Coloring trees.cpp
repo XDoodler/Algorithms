@@ -49,7 +49,7 @@ int main() {
   int nvis = 0;
   while(!nodes.empty()) {
     int data = nodes.front();
-    cout << data << endl;
+    // cout << data << endl;
     nodes.pop();
     for (auto u : G[data]) {
       remove(G[u].begin(), G[u].end(), data); 
