@@ -12,7 +12,7 @@ typedef long double ld;
 typedef pair <int, int> pii;
 
 const int N = 1e3;
-const int inf = -1;
+const int inf = INT_MAX;
 const int MOD = 1e9 + 7;
 
 int main() {
