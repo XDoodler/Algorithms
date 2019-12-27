@@ -32,7 +32,7 @@ int main() {
     for (int i = 0; i < q; ++i)
     {
       int x;
-      cin >> x; x;
+      cin >> x;
       cout << f[x - 1] << endl;
     }
   }
