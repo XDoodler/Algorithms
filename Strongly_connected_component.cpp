@@ -1,7 +1,11 @@
 /* nuttela - Soham Chakrabarti */
 
 /* problem Link - https://www.hackerearth.com/practice/algorithms/graphs/strongly-connected-components/practice-problems/algorithm/magical-islands/description/ */
-/* Solution below */
+/* Solution Link - GIVEN BELOW */
+
+/* problem Link - https://www.hackerearth.com/practice/algorithms/graphs/strongly-connected-components/practice-problems/algorithm/a-walk-to-remember-qualifier2/ */
+/* Solution - https://www.hackerearth.com/submission/39856526/ */
+
 
 #include <bits/stdc++.h>
  
