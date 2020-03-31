@@ -1,6 +1,3 @@
-#define <bits/stdc++.h>
-
-using namepsace std;
 
 int n; // number of vertices
 vector<vector<int>> adj; // adjacency list of graph
