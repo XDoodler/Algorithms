@@ -19,6 +19,7 @@ Tree visual:
 	
 BFS order.
 1 3 4 2 5
+
 */
 const int N = 1e6+6;
 int vis[N], g[N]
