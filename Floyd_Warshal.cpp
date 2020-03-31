@@ -1,12 +1,3 @@
-#include <bits/stdc++.h>
-/*
-   codechef : nuttela
-   
-   Floyd Warshal
-*/
-#define int long long
-using namespace std;
-
 const int N = 1e6+6;
 
 int dist[N][N];
@@ -21,9 +12,4 @@ void floydWarshall(){
 		}
 	}
 }	
-int32_t main()
-{
-	//inputs and call floydWarshall() 
-	return 0;
-}
 
