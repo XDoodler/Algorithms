@@ -1,22 +1,4 @@
-//Clash Credenz 2019 Wildcard
-//Team : Runtime Terror
-
-#include <bits/stdc++.h>
-
-#define ll unsigned long long
-
-#define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
-using namespace std;
-
-
-const int MOD = 1e9+7;
-const int MAX = 1e7;
-//ll modmult(ll a,ll b){ll res=0;a%=MOD;while(b){if(b&1)res=(res+a)%MOD;a=(a<<1)%MOD;b>>=1;}return res;}
-//ll modexpo(ll a,ll b){ll res=1;a%=MOD;while(b){if(b&1)res=(res*a)%MOD;a=(a*a)%MOD;b>>=1;}return res;
-
-vector<int> primes;
-void pre(){ 
+void seive(){ 
   vector<bool> prime;
   prime.resize(MAX,true);
 
@@ -31,15 +13,9 @@ void pre(){
     }
   }
 
-  for (int i = 0; i <= MAX; ++i)
+  for (int i = 2; i <= MAX; ++i)
   {
-    cout << i << ' ' << prime[i] << endl;
+    if(prime[i])primes.push_back(i);
   }
 
-}
-int main()
-{
-  pre();
-
-  return 0;
 }
