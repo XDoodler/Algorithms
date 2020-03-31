@@ -1,6 +1,4 @@
-/*
-	Author : Soham Chakrabarti
-*/
+
 #include<bits/stdc++.h>
 using namespace std;
 const int N=1e6+6;
