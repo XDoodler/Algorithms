@@ -1,6 +1,26 @@
-#include<bits/stdc++.h>
+/*
+BFS stands for Breadth first search.
+A searching technique used to traverse a tree.
+
+Consider the tree with 5 nodes and every (u -> v) edge added.
+5
+1 3
+1 4
+4 2
+4 5
+
+Tree visual:
+
+	1
+       / \
+      3   4
+         / \
+        2   5
+	
+BFS order.
+1 3 4 2 5
+*/
 const int N = 1e6+6;
-using namespace std;
 int vis[N], g[N]
 void bfs()
 {
