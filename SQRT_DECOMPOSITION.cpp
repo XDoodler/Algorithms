@@ -1,35 +1,4 @@
-/*
- SQRT-DECOMP
 
-*/
-
-#pragma Gpref optimize("O3")
-//#pragma Gpref optimize("Ofast")
-//#pragma Gpref target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-//#pragma Gpref optimize("unroll-loops")
-#include<bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp> 
-#include <ext/pb_ds/tree_policy.hpp> 
-using namespace __gnu_pbds; 
-using namespace std;
-#define int long long
-#define ld long double
-#define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-#define TC int t; cin >> t; while(t--)
-#define rep(i,j,k) for(int i=j; i<k; i++)
-#define rep_(i,j,k) for(int i=j; i>=k; --i)
-#define pb push_back
-#define imie(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
-#define F first
-#define S second 
-#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
-const int MOD = (int)1e9+7;
-const int MAX = 1e5+5;
-typedef pair<int, int> prs;
-
-int SET = 1073741823;
-int n,k,q,rem,cnt=0,ll,rr;
-int T[4*MAX];
 vector<int> arr, input_arr,blocks;
 vector<int> parent,size;    
 int block_size;
