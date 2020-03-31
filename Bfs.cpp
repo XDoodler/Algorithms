@@ -9,15 +9,12 @@ void bfs()
 	while(!q.empty())
 	{
 		int node = q.front();
-        cout << node << endl;
+        	cout << node << endl;
 		vis[node]=1; 
 		q.pop();
 		for(auto it:g[node])
 		{
-			if(!vis[it])
-			{
-				q.push(it);
-			}
+			if(!vis[it])q.push(it);
 		}
 	} 
 }
