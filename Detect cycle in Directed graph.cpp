@@ -1,11 +1,7 @@
 /*
-	Using colors - Gray , Black , White
+	Detecting if a directed Graph has a Cycle in it.
+	We can use other methods as well.
 */
-#include <bits/stdc++.h>
-using namespace std;
-#define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);
-#define TC int t; cin >> t; while(t--)
-
 int n,m;
 const int MAX = 1e5+5;
 const int inf = 1e9;
