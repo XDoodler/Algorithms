@@ -35,7 +35,7 @@ public class Solution {
       {
           int sum = 0, count = 0;
           for (int i = 0; i < 4; ++i) {
-            if(movies[i].director.equals(director)) {
+            if(movies[i].director.equalsIgnoreCase(director)) {
               sum += movies[i].budget;
               count++;
             }
