@@ -8,16 +8,14 @@ vector<int> G[MAX];
 vector<int> lvl(MAX), val;
 vector<vector<int>> up(MAX, vector<int>(LG+1)), dp(MAX, vector<int>(LG+1)); 
  
-void dfs(int u, int par, int v = -1, int h=0){
+void dfs(int u, int par, int h=0){
   lvl[u] = h;
   up[u][0] = par;
-  if(v!=-1)dp[u][0]=v;
   FR(i,1,LG+1){
     up[u][i] = up[up[u][i-1]][i-1];
-    dp[u][i] = (dp[u][i-1] ^ dp[up[u][i-1]][i-1]);
   }
   for(auto x:G[u]){
-      if(x != par) dfs(x, u, val[x], h+1);
+      if(x != par) dfs(x, u, h+1);
   }
 }
  
