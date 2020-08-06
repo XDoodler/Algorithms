@@ -1,5 +1,21 @@
 /* nuttela - Soham Chakrabarti */
 
+
+/* void insert(string) -> insert a lowercase string into the trie*/
+/* bool search(string) -> search a  string is present/not present in the trie*/
+/* bool prefix(string) -> search a prefix of a string is present/not present in the trie*/
+/* bool searchAdvanced(string) -> search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.*/
+
+
+/*
+    Below Code is entire in C++
+    Used a Class named Trie, with data members (isEnd), Trie* t[26]
+    and member functions mentioned above with their params(...) and work.
+
+    Explaintain of a trie with helpful Snippets: https://leetcode.com/problems/implement-trie-prefix-tree/solution/
+    You can solve the problem as well. ;)
+*/
+
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -31,7 +47,8 @@ ll powm(ll a,ll b) {ll res=1LL;while(b) {if(b&1)res=(res*a)%mod;a=(a*a)%mod;b>>=
 ll modmult(ll a,ll b) {ll r=0;a%=mod;while(b){if(b&1)r=(r+a)%mod;a=(a<<1)%mod;b>>=1;}return r;}
 ll modexpo(ll a,ll b) {ll r=1;a%=mod;while(b){if(b&1)r=(r*a)%mod;a=(a*a)%mod;b>>=1;}return r;}
 
-class Trie{
+
+struct Trie{
     bool isEnd;
     Trie* t[ALPHA];
     public:
@@ -80,19 +97,67 @@ class Trie{
             }
             return present;
         }
+
+        bool dfsTrie(Trie* root, string word, int index, int len) {
+            if(index == len)
+                return root->isEnd; // end of string search
+
+            if(word[index] != '.') {
+                if(root->t[word[index]-'a'])
+                    return dfsTrie(root->t[word[index]-'a'], word, index+1, len);
+                else 
+                    return false;
+            }
+            
+            for (int i = 0; i < 26; ++i) {
+                if(root->t[i])
+                    if(dfsTrie(root->t[i], word, index+1, len)) return true;
+            }
+            return false;
+        }
+
+        bool searchAdvanced(string word) {
+            Trie* root = this;
+            int sz = word.size();
+            return dfsTrie(root, word, 0, sz);
+        }
     };
 
-int32_t main() {
+int main() {
     io;
     Trie* obj = new Trie();
-    obj->insertWord("Apple");
 
-    cout << "Search the Word -> 'App' : "<< (obj->searchWord("App")?"Present":"Not present") << endl;
-    cout << "Search the Word -> 'Apple' : "<< (obj->searchWord("Apple")?"Present":"Not present") << endl;
-    cout << "Search the Word -> 'Appleo' : "<< (obj->searchWord("Appleo")?"Present":"Not present") << endl;
+    obj->insertWord("apple");
+    obj->insertWord("bunny");
+    obj->insertWord("buck");
 
-    cout << "Prefix -> 'App' : "<< (obj->hasPrefix("App")?"Present":"Not present") << endl;
-    cout << "Prefix -> 'Apple' : "<< (obj->hasPrefix("Apple")?"Present":"Not present") << endl;
-    cout << "Prefix -> 'Appleo' : "<< (obj->hasPrefix("Appleo")?"Present":"Not present") << endl;
+    cout << "Search the Word -> 'app' : "<< (obj->searchWord("app")?"Present":"Not present") << endl;
+    cout << "Search the Word -> 'apple' : "<< (obj->searchWord("apple")?"Present":"Not present") << endl;
+    cout << "Search the Word -> 'appleo' : "<< (obj->searchWord("appleo")?"Present":"Not present") << endl;
+
+    cout << "Prefix -> 'app' : "<< (obj->hasPrefix("app")?"Present":"Not present") << endl;
+    cout << "Prefix -> 'apple' : "<< (obj->hasPrefix("apple")?"Present":"Not present") << endl;
+    cout << "Prefix -> 'appleo' : "<< (obj->hasPrefix("appleo")?"Present":"Not present") << endl;
+
+    cout << "searchAdvanced -> '.uck' : "<< (obj->searchAdvanced(".uck")?"Present":"Not present") << endl;
+    cout << "searchAdvanced -> 'a.p.e' : "<< (obj->searchAdvanced("a.p.e")?"Present":"Not present") << endl;
+    cout << "searchAdvanced -> 'bunn.' : "<< (obj->searchAdvanced("bunn.")?"Present":"Not present") << endl;
+
+
     return 0;
 }
+
+/*
+
+ Output:
+    Search the Word -> 'app' : Not present
+    Search the Word -> 'apple' : Present
+    Search the Word -> 'appleo' : Not present
+    Prefix -> 'app' : Present
+    Prefix -> 'apple' : Present
+    Prefix -> 'appleo' : Not present
+    searchAdvanced -> '.uck' : Present
+    searchAdvanced -> 'a.p.e' : Present
+    searchAdvanced -> 'bunn.' : Present
+
+*/
