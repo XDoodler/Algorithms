@@ -80,6 +80,29 @@ public:
             }
         }
     }
+
+    void dfs(TreeNode* root, int currentSum, int sum, int &res) {
+        if(root) {
+            currentSum += root->val;
+            if(currentSum == sum) ++res;
+            dfs(root->left, currentSum, sum, res);
+            dfs(root->right, currentSum, sum, res);
+        }
+    }
+    
+    void startFrom(TreeNode* root, int sum,int &res) {
+        if(root) {
+            dfs(root, 0, sum, res);
+            startFrom(root->left, sum, res);
+            startFrom(root->right, sum, res);
+        }
+    }
+    
+    int pathSum(TreeNode* root, int sum) {
+        int res = 0;
+        startFrom(root, sum, res);
+        return res;
+    }
 };
 
 int main() {
@@ -102,5 +125,10 @@ int main() {
     root->bfs(root);
     cout << endl;
 
+    /* Find the number of paths that sum to a given value.
+
+    The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).*/
+
+    cout << "Total paths with sum = 8 : "<<root->pathSum(root, 8) << endl;
     return 0;
 }
